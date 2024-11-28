@@ -1,17 +1,30 @@
 using namespace std;
 #include <iostream>
 
+<<<<<<< HEAD
 class Node{
+=======
+class Nodo{
+>>>>>>> c662dcfebfc3928aa5a3556505b6f3105b399cc9
 
     private:
     int data;
     int weight;
+<<<<<<< HEAD
     Node*right;
     Node*left;
 
     public:
 
     Node(int k){
+=======
+    Nodo*right;
+    Nodo*left;
+
+    public:
+
+    Nodo(int k){
+>>>>>>> c662dcfebfc3928aa5a3556505b6f3105b399cc9
         data=k;
         weight=1;
         right=nullptr;
@@ -37,6 +50,7 @@ class Node{
         return this;
     }
 
+<<<<<<< HEAD
     Node* insertI(int k) {
     bool check {true};
     Node* current {this};
@@ -71,6 +85,8 @@ class Node{
     return this;
 }
 
+=======
+>>>>>>> c662dcfebfc3928aa5a3556505b6f3105b399cc9
     void InOrder(){ //bst left root bst right 
         
         if(this->left!=NULL){
@@ -85,6 +101,7 @@ class Node{
         }
 
     }
+<<<<<<< HEAD
 
     bool searchR(int k){ 
 
@@ -128,3 +145,6 @@ class Node{
 
 
 };
+=======
+};
+>>>>>>> c662dcfebfc3928aa5a3556505b6f3105b399cc9
