@@ -1,56 +1,46 @@
 using namespace std;
 #include <iostream>
 
-<<<<<<< HEAD
+
 class Node{
-=======
-class Nodo{
->>>>>>> c662dcfebfc3928aa5a3556505b6f3105b399cc9
 
     private:
     int data;
     int weight;
-<<<<<<< HEAD
+
     Node*right;
     Node*left;
 
     public:
 
+
     Node(int k){
-=======
-    Nodo*right;
-    Nodo*left;
 
-    public:
-
-    Nodo(int k){
->>>>>>> c662dcfebfc3928aa5a3556505b6f3105b399cc9
         data=k;
         weight=1;
         right=nullptr;
         left=nullptr;
     }
 
-    Nodo* InsertR(int k){
-        if(this==nullptr){
-            return new Nodo(k);
-        }
-
-        if(this->data == k){
-            this->weight++;
-            return this;   //ritorna puntatore
-        }
-
-        if(k < this->data ){
-            this->left = this->left->InsertR(k);
-        }else{
-            this->right = this->right->InsertR(k);
-        } 
-    
+    Node* InsertR(int k){
+            if (k==this->data){
+        this->weight++;
         return this;
     }
+    if (k<this->data){
+        if (this->left == NULL){
+            this->left= new Node (k);
+        } else{
+            this->left= this->left->InsertR(k);
+        }
+    } else if (this->right== NULL){
+        this->right= new Node(k);
+    } else {
+        this->right= this->right->InsertR(k);
+    }
+    return this;
+    }
 
-<<<<<<< HEAD
     Node* insertI(int k) {
     bool check {true};
     Node* current {this};
@@ -85,8 +75,7 @@ class Nodo{
     return this;
 }
 
-=======
->>>>>>> c662dcfebfc3928aa5a3556505b6f3105b399cc9
+
     void InOrder(){ //bst left root bst right 
         
         if(this->left!=NULL){
@@ -101,7 +90,7 @@ class Nodo{
         }
 
     }
-<<<<<<< HEAD
+
 
     bool searchR(int k){ 
 
@@ -143,8 +132,16 @@ class Nodo{
     return false; 
 }
 
+friend ostream& operator<<(ostream& o, const Node* node){
+        o << node->data;
+        return o;
+    }
+
+friend istream& operator>>(istream& i, Node* node){
+        i >> node->data;
+        return i;
+    }
 
 };
-=======
-};
->>>>>>> c662dcfebfc3928aa5a3556505b6f3105b399cc9
+
+

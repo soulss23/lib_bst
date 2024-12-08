@@ -1,14 +1,17 @@
 #include <iostream>
-#include "new lib_bst.h"
+#include "new_lib_bst.h"
 using namespace std;
 
 
 
 int main(){
 
-    int k{20};
+    
+    Node *root=new Node(56);
+    cout << "Nodo:" << root << endl;
+    cin >> root;
+    cout << "Valore del nodo:" << root << endl;
 
-    Nodo*root = new Nodo(k);
 
     root=root->InsertR(30);
     root=root->InsertR(10);
@@ -16,6 +19,6 @@ int main(){
     root = root-> InsertR(19);
 
     root->InOrder();
-
+  
     return 0;
 }
