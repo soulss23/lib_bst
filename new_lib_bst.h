@@ -75,8 +75,7 @@ class Node{
     return this;
 }
 
-
-    void InOrder(){ //bst left root bst right 
+    void InOrder(){ 
         
         if(this->left!=NULL){
             this->left->InOrder();
@@ -89,6 +88,31 @@ class Node{
             this->right->InOrder();
         }
 
+    }
+    void PreOrder(){ 
+
+        cout<<this->data<<" ";
+
+        if(this->left!=NULL){
+            this->left->PreOrder();
+        }
+
+        if(this->right!=NULL){
+            this->right->PreOrder();
+        }
+
+    }
+     void PostOrder(){ 
+        
+        if(this->left!=NULL){
+            this->left->PostOrder();
+        }
+
+        if(this->right!=NULL){
+            this->right->PostOrder();
+        }
+
+        cout<<this->data<<" ";
     }
 
 
@@ -132,16 +156,91 @@ class Node{
     return false; 
 }
 
-friend ostream& operator<<(ostream& o, const Node* node){
-        o << node->data;
-        return o;
+Node* deleteNode(int k){       //CANCEL
+
+    if(this==NULL){
+        cout<<k<<" non posso cancellarlo."<<endl;
+        return this;
     }
 
-friend istream& operator>>(istream& i, Node* node){
-        i >> node->data;
-        return i;
+    if(this->data == k){
+        if(this->left==NULL && this->right==NULL){
+
+            delete this;
+            this->data = 0;
+            this->left = nullptr;
+            this->right = nullptr;
+            
+            return this;
+        }
+
+        if(this->left==NULL){
+            Node* temp = this->right;
+            delete this;
+            this->data = 0;
+            this->left = nullptr;
+            this->right = nullptr;
+            return temp;
+        }
+
+        if(this->right==NULL){
+            Node* temp = this->left;
+
+            delete this;
+            this->data = 0;
+            this->left = nullptr;
+            this->right = nullptr;
+
+            return temp;
+        }
+
+        Node* temp = this->right;
+        this->data = temp->data;
+        this->right = deleteNode(temp->data);
     }
 
+    if(k<this->data){
+        this->left = this->left -> deleteNode(k);
+    } else{
+        this->right = this->right -> deleteNode(k);
+    }
+
+    return this;
+}
+
+bool isBst(){
+
+    if(this==NULL){
+        return true;
+    }
+    
+    if(this->left!=NULL && this->left->data<this->data){
+        return this->left->isBst();
+    }else if(this->left!=NULL && this->left->data>this->data){
+        return false;
+    }
+
+    if(this->right!=NULL && this->right->data>this->data){
+        return this->right->isBst();
+    }else if(this->right!=NULL && this->right->data<this->data){
+        return false;
+    }
+
+    return true;
+}
+
+friend ostream &operator<<(ostream &os, Node *root){
+        os << "dato della root" << root->data <<endl;
+        os << "peso della root" << root->weight <<endl;
+        return os;
+    }
+
+    friend istream &operator>>(istream &is, Node*root){
+        int value;
+        is >> value;
+        return is;
+    }
+    
 };
 
 
